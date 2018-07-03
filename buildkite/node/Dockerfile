@@ -6,5 +6,9 @@ RUN mkdir buildkite \
     && cp ./buildkite/buildkite-agent /usr/local/bin/buildkite-agent
 
 # Add the wait-for-it.sh script for waiting on dependent containers
-RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > /usr/local/bin/wait-for-it.sh \
-    && chmod +x /usr/local/bin/wait-for-it.sh
+RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+    && cp ./wait-for-it.sh /usr/local/bin/wait-for-it \
+    && chmod +x /usr/local/bin/wait-for-it
+
+# install postgres client
+RUN apt-get update && apt-get install postgresql-client git --yes
