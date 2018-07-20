@@ -10,5 +10,9 @@ RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for
     && cp ./wait-for-it.sh /usr/local/bin/wait-for-it \
     && chmod +x /usr/local/bin/wait-for-it
 
-# install postgres client
-RUN apt-get update && apt-get install postgresql-client git --yes
+# install postgres client, git and python/pip (for aws)
+RUN apt-get update && apt-get install postgresql-client git python-dev python-pip --yes
+
+# install aws cli
+RUN easy_install --upgrade six
+RUN pip install awscli
